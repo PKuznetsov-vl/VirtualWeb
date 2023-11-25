@@ -4,6 +4,7 @@ pyvirtualcam sends frames to a virtual camera from Python.
 
 ## Usage
 
+
 ```py
 import colorsys
 import numpy as np
