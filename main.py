@@ -6,14 +6,15 @@ import pyvirtualcam
 import cv2
 from retry import retry
 
-logger = logging.getLogger()
 logging.basicConfig(level=logging.INFO,
                     #filename="logs.log", filemode="w",
                     format='%(asctime)s [%(levelname)s] %(message)s',
                     handlers=[logging.FileHandler("logs.log"), logging.StreamHandler(sys.stdout)])
+logger = logging.getLogger()
 
 
-@retry(Exception, delay=30, tries=3, logger=logging)
+
+@retry(Exception, delay=30, tries=3, logger=logger)
 def connect_cam(RTSP_URL):
     cap = cv2.VideoCapture(RTSP_URL, cv2.CAP_FFMPEG)
 
