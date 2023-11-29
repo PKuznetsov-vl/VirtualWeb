@@ -20,7 +20,7 @@ def connect_cam(RTSP_URL):
 
     if not cap.isOpened():
         logging.error('Cannot open RTSP stream')
-        exit(-1)
+        raise Exception('Frame error')
 
     with pyvirtualcam.Camera(width=1280, height=720, fps=120) as cam:
         logging.info(f'Using virtual camera: {cam.device}')
@@ -41,7 +41,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         prog='VrCam',
         description='Convert RTSP to Virtual Cam')
-    parser.add_argument('ip')
+    logging.info(f'Service started')
+    parser.add_argument('RTSP')
     args = parser.parse_args()
     #'rtsp://admin:v1sionlabs@10.16.6.231:554/RVi/1/1'
-    connect_cam(RTSP_URL=args.ip)
+    connect_cam(RTSP_URL=args.RTSP)
